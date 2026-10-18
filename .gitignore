@@ -1,2 +1,4 @@
 reference/
-data_ref
+data_ref/
+build/
+data_test/

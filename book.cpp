@@ -35,7 +35,7 @@ void  Book::returnBook(){
 
 //méthode pour afficher un livre? #5 ou #6 ?
 string Book::toString() const{
-    
+    return "Titre: " + title + "\nAuteur: "+ author + "\nISBN: "+ isbn + "\nStatus: "+ (isAvailable ? "Disponible" : "Emprunté par " + borrowerId);
 }
 
 //Pour le mettre au format pour sauvegarder dans le fichier books.txt donc dois etre parreil que dans le fichier
