@@ -11,14 +11,16 @@ Book::Book(const string& title, const string& author, const string& isbn)    : t
 //les getters
 string Book::getTitle() const { return title; }
 string Book::getAuthor() const { return author; }
-string Book::getIsbn() const { return isbn; }
-bool Book::getIsAvailable() const { return isAvailable; }
+string Book::getISBN() const { return isbn; }
+bool Book::getAvailability() const { return isAvailable; }
+string Book::getBorrowerId() const { return borrowerId; }
 
 //les setters
 void Book::setTitle(const string& title) { this->title = title; }
 void Book::setAuthor(const string& author) { this->author = author; }
-void Book::setIsbn(const string& isbn) { this->isbn = isbn; }
-void Book::setIsAvailable(bool isAvailable) { this->isAvailable = isAvailable; }
+void Book::setISBN(const string& isbn) { this->isbn = isbn; }
+void Book::setAvailability(bool isAvailable) { this->isAvailable = isAvailable; }
+void Book::setBorrowerId(const string& borrowerId) { this->borrowerId = borrowerId; }   
 
 
 //methode pour emprunter un livre #9
@@ -33,7 +35,7 @@ void  Book::returnBook(){
 
 //méthode pour afficher un livre? #5 ou #6 ?
 string Book::toString() const{
-
+    
 }
 
 //Pour le mettre au format pour sauvegarder dans le fichier books.txt donc dois etre parreil que dans le fichier
