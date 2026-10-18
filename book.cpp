@@ -25,12 +25,18 @@ void Book::setBorrowerId(const string& borrowerId) { this->borrowerId = borrower
 
 //methode pour emprunter un livre #9
 void Book::checkOut(const string& borrowerId){
-
+    if (isAvailable) {
+        isAvailable = false;
+        this->borrowerId = borrowerId;
+    }
 }
 
 //méthode pour retourner un livre #10
 void  Book::returnBook(){
-
+    if (!isAvailable) {
+        isAvailable = true;
+        borrowerId = "";
+    }
 }
 
 //méthode pour afficher un livre? #5 ou #6 ?
