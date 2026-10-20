@@ -29,6 +29,7 @@ public:
     vector<Book*> getAllBooks();
     
     // User management
+    string generateUserId() const;
     void addUser(const User& user);
     User* findUserById(const string& userId);
     vector<User*> getAllUsers();
