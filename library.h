@@ -29,6 +29,7 @@ public:
     vector<Book*> getAllBooks();
     string bookToString(const Book* book);
     bool isDuplicate(const string& title, const string& author, const string& isbn);
+
     
     // User management
     string generateUserId() const;
@@ -41,6 +42,7 @@ public:
     bool returnBook(const string& isbn);
     
     // Display methods
+    void sortBooks(vector<Book*>& bookList);
     void displayAllBooks();
     void displayAvailableBooks();
     void displayAllUsers();
