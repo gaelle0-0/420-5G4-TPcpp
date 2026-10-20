@@ -2,7 +2,7 @@
 #include <algorithm>
 
 #include "library.h"
-
+#include <boost/algorithm/string.hpp>
 using namespace std;
 
 // Constructor
@@ -10,6 +10,7 @@ Library::Library() {}
 
 // Add book to library
 void Library::addBook(const Book& book) {
+
     books.push_back(make_unique<Book>(book));
 }
 
@@ -89,6 +90,22 @@ vector<Book*> Library::getAllBooks() {
         allBooks.push_back(book.get());
     }
     return allBooks;
+}
+
+//Vérifier si un livre est un doublon avec le titre auteur et isbn
+bool Library::isDuplicate(const string& title, const string& author, const string& isbn) {
+    for (const auto& book : books) {
+        // même ISBN = doublon
+        if (book->getISBN() == isbn) {
+            return true;
+        }
+        // même titre ET même auteur (sans tenir compte des majuscules ni des espaces) = doublon
+        if (boost::algorithm::iequals(boost::algorithm::trim_copy(book->getTitle()), boost::algorithm::trim_copy(title)) &&
+            boost::algorithm::iequals(boost::algorithm::trim_copy(book->getAuthor()), boost::algorithm::trim_copy(author))) {
+            return true;
+        }
+    }
+    return false;
 }
 
 //Afficher un livre avec le nom de l'emprunteur

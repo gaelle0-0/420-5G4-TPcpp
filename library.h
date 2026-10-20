@@ -28,6 +28,7 @@ public:
     vector<Book*> getAvailableBooks();
     vector<Book*> getAllBooks();
     string bookToString(const Book* book);
+    bool isDuplicate(const string& title, const string& author, const string& isbn);
     
     // User management
     string generateUserId() const;
