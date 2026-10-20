@@ -9,8 +9,12 @@ using namespace std;
 FileManager::FileManager(const string& booksFile, const string& usersFile)
     : booksFileName(booksFile), usersFileName(usersFile) {}
 
-// Save all library data
+// Save all library data 
 bool FileManager::saveLibraryData(Library& library) {
+    if (booksFileName.empty() || usersFileName.empty()) {
+        cout << "Erreur : Aucun répertoire de données spécifié (--data-dir). Impossible de sauvegarder les données.\n";
+        return false;
+    }
     return saveBooksToFile(library) && saveUsersToFile(library);
 }
 
