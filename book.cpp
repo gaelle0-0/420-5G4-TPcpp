@@ -40,14 +40,14 @@ void  Book::returnBook(){
 }
 
 //méthode pour afficher un livre? #5 ou #6 ?
-string Book::toString() const{
-    return "Titre: " + title + "\nAuteur: "+ author + "\nISBN: "+ isbn + "\nStatus: "+ (isAvailable ? "Disponible" : "Emprunté par " + borrowerId);
+string Book::toString(const string& borrowerName) const{
+    string nomEmprunteur = borrowerName.empty() ? borrowerId : borrowerName;
+    return "Titre: " + title + "\nAuteur: "+ author + "\nISBN: "+ isbn + "\nStatus: "+ (isAvailable ? "Disponible" : "Emprunté par " + nomEmprunteur);
 }
 
 //Pour le mettre au format pour sauvegarder dans le fichier books.txt donc dois etre parreil que dans le fichier
 string Book::toFileFormat() const {
-    string result = title + "|" + author + "|" + isbn + "|" + (isAvailable ? "1" : "0");
-    return result;
+    return title + "|" + author + "|" + isbn + "|" + (isAvailable ? "1" : "0") + "|" + borrowerId;
 }
 
 void Book::fromFileFormat(const string& line){
@@ -59,5 +59,5 @@ void Book::fromFileFormat(const string& line){
     getline(ss, isbn, '|');
     getline(ss, token, '|');
     isAvailable = (token == "1");
-
+    getline(ss, borrowerId, '|');
 }

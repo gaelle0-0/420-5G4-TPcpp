@@ -27,6 +27,7 @@ public:
     vector<Book*> searchBooksByAuthor(const string& author);
     vector<Book*> getAvailableBooks();
     vector<Book*> getAllBooks();
+    string bookToString(const Book* book);
     
     // User management
     string generateUserId() const;

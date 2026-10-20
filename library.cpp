@@ -91,6 +91,27 @@ vector<Book*> Library::getAllBooks() {
     return allBooks;
 }
 
+//Afficher un livre avec le nom de l'emprunteur
+string Library::bookToString(const Book* book) {
+    string nom;
+    if (!book->getAvailability()) {
+        User* user = findUserById(book->getBorrowerId());
+        // Si le livre n'a pas d'ID, cherche l'utilisateur qui l'a dans ses emprunts
+        if (!user) {
+            for (auto& u : users) {
+                if (u->hasBorrowedBook(book->getISBN())) {
+                    user = u.get();
+                    break;
+                }
+            }
+        }
+        if (user) {
+            nom = user->getName();
+        }
+    }
+    return book->toString(nom);
+}
+
 // Add user to library
 void Library::addUser(const User& user) {
     users.push_back(make_unique<User>(user));
@@ -179,7 +200,7 @@ void Library::displayAllBooks() {
     cout << "\n=== TOUS LES LIVRES ===\n";
     for (size_t i = 0; i < books.size(); ++i) {
         cout << "\nLivre " << (i + 1) << " :\n";
-        cout << books[i]->toString() << "\n";
+        cout << bookToString(books[i].get()) << "\n";
         cout << "-------------------------\n";
     }
 }
@@ -196,7 +217,7 @@ void Library::displayAvailableBooks() {
     cout << "\n=== LIVRES DISPONIBLES ===\n";
     for (size_t i = 0; i < available.size(); ++i) {
         cout << "\nLivre " << (i + 1) << " :\n";
-        cout << available[i]->toString() << "\n";
+        cout << bookToString(available[i]) << "\n";
         cout << "---------------------------\n";
     }
 }
